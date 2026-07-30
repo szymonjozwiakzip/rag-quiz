@@ -11,16 +11,26 @@
   --line: rgba(242, 239, 232, 0.12);
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
+  --pad-x: clamp(0.85rem, 4vw, 1.25rem);
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --touch: 48px;
 }
 
 * {
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 html,
 body,
 #root {
   min-height: 100%;
+  min-height: 100dvh;
 }
 
 body {
@@ -29,17 +39,24 @@ body {
   color: var(--ink);
   background: var(--bg0);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  overscroll-behavior-y: contain;
 }
 
 button {
   font: inherit;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 .app {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   isolation: isolate;
+  display: flex;
+  flex-direction: column;
 }
 
 .bg {
@@ -65,22 +82,26 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  padding: 1.25rem 1.25rem 0;
+  padding: calc(0.9rem + var(--safe-top)) var(--pad-x) 0;
 }
 
 .brand {
   display: flex;
   align-items: center;
   gap: 0.65rem;
+  min-width: 0;
 }
 
 .brand-btn {
   border: none;
   background: transparent;
   color: inherit;
-  padding: 0;
+  padding: 0.35rem 0;
+  min-height: var(--touch);
   cursor: pointer;
 }
 
@@ -88,6 +109,7 @@ button {
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 2px;
+  flex-shrink: 0;
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   box-shadow: 0 0 18px rgba(61, 154, 139, 0.45);
   animation: pulse 2.8s ease-in-out infinite;
@@ -97,15 +119,21 @@ button {
   font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: 0.02em;
-  font-size: 1.05rem;
+  font-size: clamp(0.95rem, 3.5vw, 1.05rem);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .lang-toggle {
+  flex-shrink: 0;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.04);
   color: var(--ink);
   border-radius: 999px;
-  padding: 0.4rem 0.85rem;
+  min-height: var(--touch);
+  min-width: var(--touch);
+  padding: 0.4rem 0.95rem;
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -118,9 +146,11 @@ button {
 }
 
 .main {
+  flex: 1;
+  width: 100%;
   max-width: 720px;
   margin: 0 auto;
-  padding: 1.5rem 1.25rem 3rem;
+  padding: 1rem var(--pad-x) calc(1.75rem + var(--safe-bottom));
 }
 
 .panel {
@@ -130,6 +160,8 @@ button {
   padding: 1.75rem 1.5rem;
   backdrop-filter: blur(12px);
   animation: rise 0.45s ease-out;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .home-panel,
@@ -157,6 +189,7 @@ button {
   color: var(--ink);
   border-radius: 0.95rem;
   padding: 1.15rem 1.2rem;
+  min-height: 5.5rem;
   transition: border-color 0.2s, background 0.2s, transform 0.15s;
 }
 
@@ -166,15 +199,19 @@ button {
   transform: translateY(-2px);
 }
 
+.quiz-card:active {
+  transform: scale(0.99);
+}
+
 .quiz-card-title {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: clamp(1.05rem, 4vw, 1.2rem);
   font-weight: 600;
 }
 
 .quiz-card-desc {
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: clamp(0.88rem, 3.4vw, 0.92rem);
   line-height: 1.45;
 }
 
@@ -200,7 +237,7 @@ h1 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(1.85rem, 5vw, 2.55rem);
+  font-size: clamp(1.55rem, 7vw, 2.55rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
 }
@@ -209,14 +246,14 @@ h1 {
   margin: 0.9rem auto 1.75rem;
   max-width: 28rem;
   color: var(--muted);
-  font-size: 1.02rem;
+  font-size: clamp(0.95rem, 3.6vw, 1.02rem);
   line-height: 1.55;
 }
 
 .question {
-  margin: 1.25rem 0 1.35rem;
+  margin: 1.1rem 0 1.2rem;
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 3.2vw, 1.45rem);
+  font-size: clamp(1.08rem, 4.4vw, 1.45rem);
   font-weight: 550;
   line-height: 1.35;
   letter-spacing: -0.015em;
@@ -225,9 +262,10 @@ h1 {
 .meta {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.75rem;
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: clamp(0.78rem, 3.2vw, 0.85rem);
+  line-height: 1.35;
 }
 
 .progress-bar {
@@ -250,21 +288,22 @@ h1 {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.65rem;
 }
 
 .option {
   width: 100%;
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 0.85rem;
+  gap: 0.75rem;
   align-items: start;
   text-align: left;
   border: 1px solid var(--line);
   background: rgba(255, 255, 255, 0.03);
   color: var(--ink);
   border-radius: 0.85rem;
-  padding: 0.9rem 1rem;
+  padding: 0.85rem 0.95rem;
+  min-height: var(--touch);
   transition: border-color 0.2s, background 0.2s, transform 0.15s;
 }
 
@@ -272,6 +311,10 @@ h1 {
   border-color: rgba(61, 154, 139, 0.5);
   background: rgba(61, 154, 139, 0.08);
   transform: translateY(-1px);
+}
+
+.option:active:not(:disabled) {
+  transform: scale(0.99);
 }
 
 .option:disabled {
@@ -296,8 +339,8 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 1.85rem;
+  height: 1.85rem;
   border-radius: 0.4rem;
   background: rgba(255, 255, 255, 0.07);
   font-size: 0.78rem;
@@ -314,9 +357,9 @@ h1 {
 }
 
 .option-text {
-  font-size: 0.95rem;
+  font-size: clamp(0.9rem, 3.5vw, 0.95rem);
   line-height: 1.45;
-  padding-top: 0.15rem;
+  padding-top: 0.2rem;
 }
 
 .feedback {
@@ -353,7 +396,8 @@ h1 {
 .btn {
   border: none;
   border-radius: 999px;
-  padding: 0.85rem 1.45rem;
+  padding: 0.9rem 1.45rem;
+  min-height: var(--touch);
   font-weight: 650;
   font-size: 0.95rem;
   transition: transform 0.15s, opacity 0.15s, background 0.2s;
@@ -387,8 +431,8 @@ h1 {
 
 .score-ring {
   --pct: 0%;
-  width: 7.5rem;
-  height: 7.5rem;
+  width: min(7.5rem, 42vw);
+  height: min(7.5rem, 42vw);
   margin: 0 auto 1.75rem;
   border-radius: 50%;
   display: grid;
@@ -397,7 +441,7 @@ h1 {
     radial-gradient(circle at center, var(--card) 62%, transparent 63%),
     conic-gradient(var(--accent) var(--pct), rgba(255, 255, 255, 0.1) 0);
   font-family: var(--font-display);
-  font-size: 1.55rem;
+  font-size: clamp(1.25rem, 5vw, 1.55rem);
   font-weight: 600;
   animation: rise 0.55s ease-out 0.05s both;
 }
@@ -411,7 +455,7 @@ h1 {
 }
 
 .review-head h1 {
-  font-size: 1.55rem;
+  font-size: clamp(1.25rem, 5vw, 1.55rem);
 }
 
 .review-list {
@@ -441,6 +485,7 @@ h1 {
   margin: 0 0 0.55rem;
   font-weight: 600;
   line-height: 1.4;
+  font-size: clamp(0.92rem, 3.5vw, 1rem);
 }
 
 .review-num {
@@ -451,7 +496,7 @@ h1 {
 .review-a {
   margin: 0.35rem 0 0;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: clamp(0.84rem, 3.3vw, 0.9rem);
   line-height: 1.45;
 }
 
@@ -487,28 +532,77 @@ h1 {
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 640px) {
   .panel {
-    padding: 1.35rem 1.1rem;
+    padding: 1.15rem 0.95rem;
+    border-radius: 1rem;
   }
 
   .home-panel,
   .result-panel {
-    padding: 2rem 1.2rem;
+    padding: 1.5rem 1rem;
   }
 
-  .actions.row.between {
+  .quiz-panel {
+    padding-bottom: calc(5.5rem + var(--safe-bottom));
+  }
+
+  .quiz-panel .actions.row.between {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    margin: 0;
+    padding: 0.75rem var(--pad-x) calc(0.75rem + var(--safe-bottom));
+    background: linear-gradient(180deg, transparent, rgba(15, 20, 25, 0.92) 28%, rgba(15, 20, 25, 0.98));
+    backdrop-filter: blur(10px);
     flex-direction: column-reverse;
     align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .quiz-panel .actions.row.between .btn {
+    width: 100%;
+  }
+
+  .actions.row:not(.between) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .actions.row:not(.between) .btn {
+    width: 100%;
   }
 
   .meta {
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.2rem;
+  }
+
+  .meta-progress {
+    opacity: 0.85;
   }
 
   .review-head {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+  }
+
+  .review-head .btn {
+    width: 100%;
+  }
+
+  .option {
+    padding: 0.95rem;
+    gap: 0.7rem;
+  }
+}
+
+@media (hover: none) {
+  .quiz-card:hover,
+  .option:hover:not(:disabled),
+  .btn.primary:hover:not(:disabled) {
+    transform: none;
   }
 }
