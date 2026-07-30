@@ -136,6 +136,12 @@ function App() {
 
             <h2 className="question">{q.question[lang]}</h2>
 
+            {q.code && (
+              <pre className="code-block">
+                <code>{q.code}</code>
+              </pre>
+            )}
+
             <ul className="options">
               {q.options[lang].map((opt, i) => {
                 let state = "";
@@ -218,6 +224,11 @@ function App() {
                     <p className="review-q">
                       <span className="review-num">{i + 1}.</span> {item.question[lang]}
                     </p>
+                    {item.code && (
+                      <pre className="code-block review-code">
+                        <code>{item.code}</code>
+                      </pre>
+                    )}
                     <p className="review-a">
                       <strong>{t.yourAnswer}:</strong>{" "}
                       {LETTERS[picked]}. {item.options[lang][picked]}

@@ -1,5 +1,6 @@
 import { ragQuestions } from "./rag";
-import { accentureQuestions } from "./accenture";
+import { enterpriseQuestions } from "./enterprise";
+import { pythonQuestions } from "./python";
 
 export const quizzes = [
   {
@@ -15,16 +16,28 @@ export const quizzes = [
     questions: ragQuestions,
   },
   {
-    id: "accenture",
+    id: "enterprise",
     title: {
-      en: "Accenture GenAI Interview",
-      pl: "Accenture GenAI Interview",
+      en: "Enterprise GenAI Interview",
+      pl: "Enterprise GenAI Interview",
     },
     description: {
       en: "LLM fundamentals, production RAG, security & multi-agent design — 22 questions.",
       pl: "Fundamenty LLM, produkcyjny RAG, security i multi-agent — 22 pytania.",
     },
-    questions: accentureQuestions,
+    questions: enterpriseQuestions,
+  },
+  {
+    id: "python",
+    title: {
+      en: "Python · GenAI coding",
+      pl: "Python · kod GenAI",
+    },
+    description: {
+      en: "Fill-the-blank, bug hunt, complexity — chunking, embeddings, RAG helpers — 22 questions.",
+      pl: "Luki w kodzie, bug hunt, złożoność — chunking, embeddingi, helpery RAG — 22 pytania.",
+    },
+    questions: pythonQuestions,
   },
 ];
 

@@ -259,6 +259,30 @@ h1 {
   letter-spacing: -0.015em;
 }
 
+.code-block {
+  margin: 0 0 1.15rem;
+  padding: 0.9rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.35);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  font-family: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  font-size: clamp(0.72rem, 2.8vw, 0.82rem);
+  line-height: 1.45;
+  color: #d7e2ec;
+}
+
+.code-block code {
+  font-family: inherit;
+  white-space: pre;
+}
+
+.review-code {
+  margin: 0.55rem 0 0.75rem;
+  font-size: clamp(0.68rem, 2.6vw, 0.78rem);
+}
+
 .meta {
   display: flex;
   justify-content: space-between;

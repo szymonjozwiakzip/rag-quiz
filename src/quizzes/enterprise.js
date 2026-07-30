@@ -1,4 +1,4 @@
-export const accentureQuestions = [
+export const enterpriseQuestions = [
   {
     id: 1,
     question: {
@@ -310,12 +310,12 @@ export const accentureQuestions = [
   {
     id: 15,
     question: {
-      en: "In Accenture-style enterprise GenAI, why is “just an API wrapper” no longer enough?",
-      pl: "Dlaczego w enterprise GenAI (styl Accenture) „sam wrapper na API” już nie wystarcza?",
+      en: "In enterprise GenAI, why is “just an API wrapper” no longer enough?",
+      pl: "Dlaczego w enterprise GenAI „sam wrapper na API” już nie wystarcza?",
     },
     options: {
       en: [
-        "Because panels expect industrial integration: legacy systems, GDPR/data masking, cost/token control, security, and measurable ROI — not only writing a prompt",
+        "Because teams expect industrial integration: legacy systems, GDPR/data masking, cost/token control, security, and measurable ROI — not only writing a prompt",
         "Because API wrappers are illegal in the EU",
         "Because LLMs can no longer be called via HTTP",
         "Because consultants forbid using OpenAI or Anthropic APIs",
@@ -359,7 +359,7 @@ export const accentureQuestions = [
     },
     options: {
       en: [
-        "Enterprise LLMs must safely query structured warehouses; agents translating text→SQL need injection safeguards and correct joins — Accenture-style interviews often test this",
+        "Enterprise LLMs must safely query structured warehouses; agents translating text→SQL need injection safeguards and correct joins — interviews often test this",
         "SQL was replaced entirely by vector databases in 2024",
         "GenAI engineers never touch structured data",
         "Text-to-SQL is only used for generating CSS",
@@ -420,8 +420,8 @@ export const accentureQuestions = [
   {
     id: 20,
     question: {
-      en: "In Accenture GenAI interviews, roughly how is coding vs. theory weighted, and what does that imply?",
-      pl: "Na rozmowach GenAI w Accenture jak mniej więcej waży się coding vs teoria i co z tego wynika?",
+      en: "In GenAI engineering interviews, roughly how is coding vs. theory weighted, and what does that imply?",
+      pl: "Na rozmowach GenAI engineering jak mniej więcej waży się coding vs teoria i co z tego wynika?",
     },
     options: {
       en: [
@@ -442,8 +442,8 @@ export const accentureQuestions = [
   {
     id: 21,
     question: {
-      en: "What are Accenture’s three core technical pillars for GenAI interviews described in the prep material?",
-      pl: "Jakie trzy filary techniczne GenAI (wg materiału prep) Accenture testuje na rozmowach?",
+      en: "What are the three core technical pillars often tested in GenAI interviews?",
+      pl: "Jakie trzy filary techniczne GenAI często pojawiają się na rozmowach?",
     },
     options: {
       en: [
