@@ -1,6 +1,7 @@
 import { ragQuestions } from "./rag";
 import { enterpriseQuestions } from "./enterprise";
 import { pythonQuestions } from "./python";
+import { algorithmsQuestions } from "./algorithms";
 
 export const quizzes = [
   {
@@ -38,6 +39,18 @@ export const quizzes = [
       pl: "Luki w kodzie, bug hunt, złożoność — chunking, embeddingi, helpery RAG — 22 pytania.",
     },
     questions: pythonQuestions,
+  },
+  {
+    id: "algorithms",
+    title: {
+      en: "Python · Junior algorithms",
+      pl: "Python · algorytmy junior",
+    },
+    description: {
+      en: "Loops, gotchas, two pointers, complexity, classic traps — 50 questions.",
+      pl: "Pętle, pułapki, two pointers, złożoność, klasyki rekrutacyjne — 50 pytań.",
+    },
+    questions: algorithmsQuestions,
   },
 ];
 
